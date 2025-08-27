@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-JKBEGQE5CQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-JKBEGQE5CQ');
-</script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>vispy.giize.com — Minecraft Server</title>
-  <meta name="description" content="Join the Minecraft server at vispy.giize.com. Play, survive, and have fun!" />
+  <title>Vispy SMP - Public Minecraft Server</title>
+  <meta name="description" content="Join Vispy SMP - a public Minecraft survival server for friends and players worldwide. Play, build, and enjoy a friendly SMP community!" />
+  <meta name="keywords" content="vispy smp, public smp, minecraft smp, survival server, vispy minecraft server, join smp, minecraft multiplayer" />
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://vispy.pages.dev/" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     :root{ --bg1:#0b1020; --bg2:#13213a; --accent:#00ff95; --accent2:#7ef2ff; --text:#eaf6ff; --muted:#93b7c8; --danger:#ff5c7a; --gold:#ffd166; --shadow:0 10px 30px rgba(0,0,0,.45); --round:20px; }
@@ -43,13 +38,11 @@
     .btn{ cursor:pointer; display:inline-flex; align-items:center; gap:10px; padding:14px 18px; font-weight:700; border-radius:14px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.1); color:var(--text); text-decoration:none; box-shadow:var(--shadow); transition:all .25s ease; }
     .btn:hover{ transform:translateY(-3px) scale(1.05); background:rgba(255,255,255,.15);} 
     .btn:active{ transform:scale(.95); background:rgba(255,255,255,.25);} 
-    .ipbox{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border-radius:12px; background:rgba(0,0,0,.35); border:1px dashed rgba(255,255,255,.2); font-family:"Press Start 2P", monospace; position:relative; }
-    .copy{ cursor:pointer; border:0; background:var(--accent); color:#06251b; font-weight:900; padding:10px 12px; border-radius:10px; transition:all .25s ease; position:relative; z-index:2; }
+    .ipbox{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border-radius:12px; background:rgba(0,0,0,.35); border:1px dashed rgba(255,255,255,.2); font-family:"Press Start 2P", monospace; }
+    .copy{ cursor:pointer; border:0; background:var(--accent); color:#06251b; font-weight:900; padding:10px 12px; border-radius:10px; transition:all .25s ease; }
     .copy:hover{ filter:brightness(1.1); transform:translateY(-2px); }
     .copy:active{ transform:scale(.9); }
     .copy.copied{ background:#0fd976; color:#041a12; box-shadow:0 0 20px #0fd976; }
-    .tooltip{ position:absolute; bottom:120%; right:0; background:var(--accent2); color:#06251b; padding:6px 10px; border-radius:6px; font-size:12px; font-weight:700; opacity:0; transform:translateY(10px); transition:all .3s ease; white-space:nowrap; }
-    .tooltip.show{ opacity:1; transform:translateY(0); }
     .pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.18); font-weight:700; }
     .online{ color:#0fd976; background:rgba(15,217,118,.15); border-color:#0fd976; }
     .offline{ color:#ff5c7a; background:rgba(255,92,122,.15); border-color:#ff5c7a; }
@@ -67,8 +60,8 @@
   <div class="wrap">
     <header>
       <div class="badge"><span class="dot"></span> Now Live — vispy.giize.com</div>
-      <h1>VISPY SMP</h1>
-      <p class="subtitle">SMP for friends and anyone who wants to play with joy!</p>
+      <h1>Vispy SMP - Public Minecraft Server</h1>
+      <p class="subtitle">Join the Vispy SMP — a public survival multiplayer for friends and anyone who wants to play with joy!</p>
     </header>
 
     <section class="grid">
@@ -78,7 +71,6 @@
         <div class="ipbox">
           <span id="iptext">vispy.giize.com</span>
           <button class="copy" id="copyBtn" onclick="copyIP()">COPY</button>
-          <div class="tooltip" id="tooltip">Copied to clipboard!</div>
         </div>
         <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center">
           <span class="pill online" id="statusPill">🟢 Online</span>
@@ -163,14 +155,11 @@
       const ip=document.getElementById('iptext').innerText;
       navigator.clipboard.writeText(ip).then(()=>{
         const copyBtn=document.getElementById('copyBtn');
-        const tooltip=document.getElementById('tooltip');
         copyBtn.textContent='COPIED!';
         copyBtn.classList.add('copied');
-        tooltip.classList.add('show');
         setTimeout(()=>{
           copyBtn.textContent='COPY';
           copyBtn.classList.remove('copied');
-          tooltip.classList.remove('show');
         },1500);
       }).catch(()=>{
         alert('Failed to copy IP. Please copy manually.');
