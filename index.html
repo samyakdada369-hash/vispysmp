@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>vispy.giize.com — Minecraft Server</title>
+  <meta name="description" content="Join the Minecraft server at vispy.giize.com. Play, survive, and have fun!" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{ --bg1:#0b1020; --bg2:#13213a; --accent:#00ff95; --accent2:#7ef2ff; --text:#eaf6ff; --muted:#93b7c8; --danger:#ff5c7a; --gold:#ffd166; --shadow:0 10px 30px rgba(0,0,0,.45); --round:20px; }
+    *{box-sizing:border-box} html,body{height:100%;}
+    body{margin:0; color:var(--text); font-family:Rubik, system-ui; background:linear-gradient(180deg, var(--bg1), var(--bg2)); overflow-x:hidden; position:relative; cursor:none;}
+
+    /* Animated background */
+    .cubes{position:fixed; inset:0; pointer-events:none; overflow:hidden; filter:saturate(120%);} 
+    .cube{position:absolute; width:40px; height:40px; transform-style:preserve-3d; opacity:.25;}
+    .cube .face{position:absolute; inset:0; background:linear-gradient(135deg,#3ddc97,#00b894); border-radius:6px;}
+    .cube .top{transform:rotateX(90deg) translateZ(20px); background:linear-gradient(135deg,#9cffb0,#55efc4);} 
+    .cube .front{transform:translateZ(20px);} 
+    .cube .right{transform:rotateY(90deg) translateZ(20px); background:linear-gradient(135deg,#2ecc71,#27ae60);} 
+    .cube .bottom{transform:rotateX(-90deg) translateZ(20px); background:#087f5b;} 
+    .cube .left{transform:rotateY(-90deg) translateZ(20px); background:#0ca678;} 
+    .cube .back{transform:rotateY(180deg) translateZ(20px); background:#0b8f6b;} 
+
+    @keyframes floatCube{0%{transform:translate(var(--x),110vh) rotateX(0) rotateY(0)}100%{transform:translate(calc(var(--x) + 10px),-20vh) rotateX(360deg) rotateY(360deg)}}
+
+    .wrap{ max-width:1100px; margin:0 auto; padding:24px; position:relative; z-index:1; }
+    header{ text-align:center; padding:60px 0 30px; }
+    .badge{ display:inline-flex; gap:10px; align-items:center; font-family:"Press Start 2P", monospace; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.15); padding:10px 14px; border-radius:999px; box-shadow:var(--shadow);} 
+    .dot{ width:8px; height:8px; border-radius:999px; background:var(--accent);} 
+    h1{ font-family:"Press Start 2P", monospace; margin:18px 0 12px; font-size:clamp(28px, 4vw, 52px); text-shadow:0 6px 0 rgba(0,0,0,.4);} 
+    .subtitle{ color:var(--muted); font-size:clamp(14px,1.8vw,18px)}
+    .grid{ display:grid; gap:22px; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); margin:34px 0; }
+    .card{ border-radius:var(--round); padding:22px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); box-shadow:var(--shadow);} 
+    .btn{ cursor:pointer; display:inline-flex; align-items:center; gap:10px; padding:14px 18px; font-weight:700; border-radius:14px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.1); color:var(--text); text-decoration:none; box-shadow:var(--shadow); transition:all .25s ease; }
+    .btn:hover{ transform:translateY(-3px) scale(1.05); background:rgba(255,255,255,.15);} 
+    .btn:active{ transform:scale(.95); background:rgba(255,255,255,.25);} 
+    .ipbox{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border-radius:12px; background:rgba(0,0,0,.35); border:1px dashed rgba(255,255,255,.2); font-family:"Press Start 2P", monospace; position:relative; }
+    .copy{ cursor:pointer; border:0; background:var(--accent); color:#06251b; font-weight:900; padding:10px 12px; border-radius:10px; transition:all .25s ease; position:relative; z-index:2; }
+    .copy:hover{ filter:brightness(1.1); transform:translateY(-2px); }
+    .copy:active{ transform:scale(.9); }
+    .copy.copied{ background:#0fd976; color:#041a12; box-shadow:0 0 20px #0fd976; }
+    .tooltip{ position:absolute; bottom:120%; right:0; background:var(--accent2); color:#06251b; padding:6px 10px; border-radius:6px; font-size:12px; font-weight:700; opacity:0; transform:translateY(10px); transition:all .3s ease; white-space:nowrap; }
+    .tooltip.show{ opacity:1; transform:translateY(0); }
+    .pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.18); font-weight:700; }
+    .online{ color:#0fd976; background:rgba(15,217,118,.15); border-color:#0fd976; }
+    .offline{ color:#ff5c7a; background:rgba(255,92,122,.15); border-color:#ff5c7a; }
+    footer{ text-align:center; padding:30px 0 60px; color:var(--muted) }
+
+    /* Motion blur cursor */
+    .cursor{position:fixed; top:0; left:0; width:20px; height:20px; border-radius:50%; background:var(--accent2); pointer-events:none; mix-blend-mode:screen; filter:blur(8px) brightness(1.5); transform:translate(-50%,-50%); z-index:9999;}
+  </style>
+</head>
+<body>
+  <!-- Decorative animated cubes -->
+  <div class="cubes" id="cubes"></div>
+  <div class="cursor" id="cursor"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="badge"><span class="dot"></span> Now Live — vispy.giize.com</div>
+      <h1>VISPY SMP</h1>
+      <p class="subtitle">SMP for friends and anyone who wants to play with joy!</p>
+    </header>
+
+    <section class="grid">
+      <article class="card">
+        <h3>Join Now</h3>
+        <p>Copy the IP and jump in! Works for <strong>Java</strong>.</p>
+        <div class="ipbox">
+          <span id="iptext">vispy.giize.com</span>
+          <button class="copy" id="copyBtn" onclick="copyIP()">COPY</button>
+          <div class="tooltip" id="tooltip">Copied to clipboard!</div>
+        </div>
+        <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center">
+          <span class="pill online" id="statusPill">🟢 Online</span>
+          <a class="btn" href="#howto">How to join</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h3>Season Perks</h3>
+        <ul>
+          <li>Custom events & community quests</li>
+          <li>Land claims and grief protection</li>
+          <li>Balanced economy • Player shops</li>
+          <li>Lag reduced • Optimized TPS</li>
+        </ul>
+        <a class="btn" href="#rules">Read Rules</a>
+      </article>
+
+      <article class="card">
+        <h3>Live Stats</h3>
+        <p id="motd">MOTD: Welcome to VISPY SMP</p>
+        <p><strong>Status:</strong> <span class="online">🟢 Online</span></p>
+        <a class="btn" href="#discord">Discord (Coming Soon)</a>
+      </article>
+    </section>
+
+    <section id="howto" class="card">
+      <h3>How to Join (Quick Guide)</h3>
+      <div class="grid">
+        <div>
+          <h4>Java Edition</h4>
+          <ol>
+            <li>Open Minecraft Java.</li>
+            <li>Multiplayer → Add Server.</li>
+            <li>Server Address: <code>vispy.giize.com</code></li>
+            <li>Click <em>Join Server</em>.</li>
+            <li>Enjoy and have fun with the VISPY community!</li>
+          </ol>
+        </div>
+        <div>
+          <h4>More Info</h4>
+          <p>You can invite your friends to join you on the SMP! Share the IP with them, and they can follow the same steps above. The server is always online so you can play anytime.</p>
+          <p>Make sure to read the rules before joining, and have fun exploring, building, and enjoying community events!</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules" class="card">
+      <h3>Rules</h3>
+      <ul>
+        <li>No hacking, x-ray, or dupes.</li>
+        <li>Respect players; no harassment or hate speech.</li>
+        <li>No griefing outside allowed PvP zones.</li>
+        <li>Keep chat friendly; English/Hindi both okay.</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Made with ♥ for the VISPY community. Not affiliated with Mojang.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Animated cubes background
+    (function makeCubes(){
+      const layer=document.getElementById('cubes');
+      const count=18;
+      for(let i=0;i<count;i++){
+        const c=document.createElement('div'); c.className='cube';
+        c.style.setProperty('--x', Math.floor(Math.random()*100)+'vw');
+        c.style.animation=`floatCube ${40+Math.random()*40}s linear infinite`;
+        c.style.animationDelay=(-Math.random()*40)+'s';
+        c.style.left=Math.floor(Math.random()*100)+'vw';
+        c.style.top=Math.floor(Math.random()*100)+'vh';
+        c.innerHTML='<div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div>';
+        layer.appendChild(c);
+      }
+    })();
+
+    // Copy IP button function
+    function copyIP(){
+      const ip=document.getElementById('iptext').innerText;
+      navigator.clipboard.writeText(ip).then(()=>{
+        const copyBtn=document.getElementById('copyBtn');
+        const tooltip=document.getElementById('tooltip');
+        copyBtn.textContent='COPIED!';
+        copyBtn.classList.add('copied');
+        tooltip.classList.add('show');
+        setTimeout(()=>{
+          copyBtn.textContent='COPY';
+          copyBtn.classList.remove('copied');
+          tooltip.classList.remove('show');
+        },1500);
+      }).catch(()=>{
+        alert('Failed to copy IP. Please copy manually.');
+      });
+    }
+
+    // Motion blur cursor
+    const cursor=document.getElementById('cursor');
+    document.addEventListener('mousemove', e=>{
+      cursor.style.left=e.clientX+'px';
+      cursor.style.top=e.clientY+'px';
+    });
+  </script>
+</body>
+</html>
