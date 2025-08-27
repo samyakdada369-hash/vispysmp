@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vispy SMP - Public Minecraft Server</title>
-  <meta name="description" content="Join Vispy SMP - a public Minecraft survival server for friends and players worldwide. Play, build, and enjoy a friendly SMP community!" />
-  <meta name="keywords" content="vispy smp, public smp, minecraft smp, survival server, vispy minecraft server, join smp, minecraft multiplayer" />
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://vispy.pages.dev/" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik:wght@300;400;700&display=swap" rel="stylesheet">
+<!-- saved from url=(0024)https://vispy.pages.dev/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Google tag (gtag.js) -->
+<script async="" src="./vispy.giize.com — Minecraft Server_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JKBEGQE5CQ');
+</script>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vispy.giize.com — Minecraft Server</title>
+  <meta name="description" content="Join the Minecraft server at vispy.giize.com. Play, survive, and have fun!">
+  <link href="./vispy.giize.com — Minecraft Server_files/css2" rel="stylesheet">
   <style>
     :root{ --bg1:#0b1020; --bg2:#13213a; --accent:#00ff95; --accent2:#7ef2ff; --text:#eaf6ff; --muted:#93b7c8; --danger:#ff5c7a; --gold:#ffd166; --shadow:0 10px 30px rgba(0,0,0,.45); --round:20px; }
     *{box-sizing:border-box} html,body{height:100%;}
@@ -38,11 +43,13 @@
     .btn{ cursor:pointer; display:inline-flex; align-items:center; gap:10px; padding:14px 18px; font-weight:700; border-radius:14px; border:1px solid rgba(255,255,255,.2); background:rgba(255,255,255,.1); color:var(--text); text-decoration:none; box-shadow:var(--shadow); transition:all .25s ease; }
     .btn:hover{ transform:translateY(-3px) scale(1.05); background:rgba(255,255,255,.15);} 
     .btn:active{ transform:scale(.95); background:rgba(255,255,255,.25);} 
-    .ipbox{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border-radius:12px; background:rgba(0,0,0,.35); border:1px dashed rgba(255,255,255,.2); font-family:"Press Start 2P", monospace; }
-    .copy{ cursor:pointer; border:0; background:var(--accent); color:#06251b; font-weight:900; padding:10px 12px; border-radius:10px; transition:all .25s ease; }
+    .ipbox{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 16px; border-radius:12px; background:rgba(0,0,0,.35); border:1px dashed rgba(255,255,255,.2); font-family:"Press Start 2P", monospace; position:relative; }
+    .copy{ cursor:pointer; border:0; background:var(--accent); color:#06251b; font-weight:900; padding:10px 12px; border-radius:10px; transition:all .25s ease; position:relative; z-index:2; }
     .copy:hover{ filter:brightness(1.1); transform:translateY(-2px); }
     .copy:active{ transform:scale(.9); }
     .copy.copied{ background:#0fd976; color:#041a12; box-shadow:0 0 20px #0fd976; }
+    .tooltip{ position:absolute; bottom:120%; right:0; background:var(--accent2); color:#06251b; padding:6px 10px; border-radius:6px; font-size:12px; font-weight:700; opacity:0; transform:translateY(10px); transition:all .3s ease; white-space:nowrap; }
+    .tooltip.show{ opacity:1; transform:translateY(0); }
     .pill{ display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.18); font-weight:700; }
     .online{ color:#0fd976; background:rgba(15,217,118,.15); border-color:#0fd976; }
     .offline{ color:#ff5c7a; background:rgba(255,92,122,.15); border-color:#ff5c7a; }
@@ -54,14 +61,14 @@
 </head>
 <body>
   <!-- Decorative animated cubes -->
-  <div class="cubes" id="cubes"></div>
-  <div class="cursor" id="cursor"></div>
+  <div class="cubes" id="cubes"><div class="cube" style="--x: 30vw; animation: 74.5969s linear -35.0704s infinite normal none running floatCube; left: 52vw; top: 84vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 45vw; animation: 76.4056s linear -25.1412s infinite normal none running floatCube; left: 30vw; top: 47vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 99vw; animation: 61.6544s linear -15.038s infinite normal none running floatCube; left: 10vw; top: 20vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 72vw; animation: 40.4162s linear -32.0359s infinite normal none running floatCube; left: 2vw; top: 7vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 46vw; animation: 59.6524s linear -25.7743s infinite normal none running floatCube; left: 96vw; top: 50vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 20vw; animation: 75.922s linear -38.3294s infinite normal none running floatCube; left: 59vw; top: 7vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 9vw; animation: 78.7517s linear -32.1386s infinite normal none running floatCube; left: 15vw; top: 60vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 87vw; animation: 41.9388s linear -7.88333s infinite normal none running floatCube; left: 67vw; top: 38vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 47vw; animation: 57.8744s linear -13.7272s infinite normal none running floatCube; left: 70vw; top: 49vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 99vw; animation: 45.8768s linear -39.3518s infinite normal none running floatCube; left: 69vw; top: 32vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 68vw; animation: 66.2117s linear -11.4593s infinite normal none running floatCube; left: 35vw; top: 4vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 70vw; animation: 40.4704s linear -4.22748s infinite normal none running floatCube; left: 42vw; top: 2vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 31vw; animation: 44.4959s linear -6.17284s infinite normal none running floatCube; left: 1vw; top: 85vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 26vw; animation: 66.5155s linear -18.135s infinite normal none running floatCube; left: 57vw; top: 29vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 13vw; animation: 47.8277s linear -37.4753s infinite normal none running floatCube; left: 64vw; top: 37vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 36vw; animation: 56.5082s linear -5.40813s infinite normal none running floatCube; left: 34vw; top: 89vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 71vw; animation: 64.2478s linear -22.0752s infinite normal none running floatCube; left: 29vw; top: 63vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div><div class="cube" style="--x: 73vw; animation: 65.3918s linear -37.931s infinite normal none running floatCube; left: 0vw; top: 30vh;"><div class="face top"></div><div class="face bottom"></div><div class="face left"></div><div class="face right"></div><div class="face front"></div><div class="face back"></div></div></div>
+  <div class="cursor" id="cursor" style="left: 363px; top: 3px;"></div>
 
   <div class="wrap">
     <header>
       <div class="badge"><span class="dot"></span> Now Live — vispy.giize.com</div>
-      <h1>Vispy SMP - Public Minecraft Server</h1>
-      <p class="subtitle">Join the Vispy SMP — a public survival multiplayer for friends and anyone who wants to play with joy!</p>
+      <h1>VISPY SMP</h1>
+      <p class="subtitle">SMP for friends and anyone who wants to play with joy!</p>
     </header>
 
     <section class="grid">
@@ -71,29 +78,30 @@
         <div class="ipbox">
           <span id="iptext">vispy.giize.com</span>
           <button class="copy" id="copyBtn" onclick="copyIP()">COPY</button>
+          <div class="tooltip" id="tooltip">Copied to clipboard!</div>
         </div>
         <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center">
           <span class="pill online" id="statusPill">🟢 Online</span>
-          <a class="btn" href="#howto">How to join</a>
+          <a class="btn" href="https://vispy.pages.dev/#howto">How to join</a>
         </div>
       </article>
 
       <article class="card">
         <h3>Season Perks</h3>
         <ul>
-          <li>Custom events & community quests</li>
+          <li>Custom events &amp; community quests</li>
           <li>Land claims and grief protection</li>
           <li>Balanced economy • Player shops</li>
           <li>Lag reduced • Optimized TPS</li>
         </ul>
-        <a class="btn" href="#rules">Read Rules</a>
+        <a class="btn" href="https://vispy.pages.dev/#rules">Read Rules</a>
       </article>
 
       <article class="card">
         <h3>Live Stats</h3>
         <p id="motd">MOTD: Welcome to VISPY SMP</p>
         <p><strong>Status:</strong> <span class="online">🟢 Online</span></p>
-        <a class="btn" href="#discord">Discord (Coming Soon)</a>
+        <a class="btn" href="https://vispy.pages.dev/#discord">Discord (Coming Soon)</a>
       </article>
     </section>
 
@@ -155,11 +163,14 @@
       const ip=document.getElementById('iptext').innerText;
       navigator.clipboard.writeText(ip).then(()=>{
         const copyBtn=document.getElementById('copyBtn');
+        const tooltip=document.getElementById('tooltip');
         copyBtn.textContent='COPIED!';
         copyBtn.classList.add('copied');
+        tooltip.classList.add('show');
         setTimeout(()=>{
           copyBtn.textContent='COPY';
           copyBtn.classList.remove('copied');
+          tooltip.classList.remove('show');
         },1500);
       }).catch(()=>{
         alert('Failed to copy IP. Please copy manually.');
@@ -173,5 +184,6 @@
       cursor.style.top=e.clientY+'px';
     });
   </script>
-</body>
-</html>
+
+
+</body></html>
